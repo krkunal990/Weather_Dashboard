@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Weather Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Weather Dashboard is a React application that allows users to search for current weather and a 5-day forecast for any city using the OpenWeatherMap API. Users can switch between Celsius and Fahrenheit, add cities to their favorites, and retrieve weather data for their favorite cities.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Search for City**: Users can search for the weather of any city, and the app displays the current temperature and 5-day forecast.
+- **Temperature Unit Toggle**: Users can toggle between Celsius and Fahrenheit units for displaying the temperature.
+- **Add/Remove Favorite Cities**: Users can add the searched city to their list of favorite cities or remove it if it is already in the favorites.
+- **Favorite Cities Management**: View, search, and retrieve weather data for favorite cities stored on a local JSON server.
+- **Debounced Search**: The search feature has a debounce mechanism to prevent unnecessary API calls on every keystroke.
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project is organized into the following components:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **`App.js`**: The main application component that holds the state and renders the weather data, search bar, and favorite cities.
+2. **`SearchComponent.js`**: A component for searching the city. Includes a debounce to optimize API requests.
+3. **`WeatherDisplayComponent.js`**: Displays the current weather and 5-day forecast for the selected city. Also includes the ability to switch temperature units and add the current city to the favorite list.
+4. **`FavoriteComponent.js`**: Manages the list of favorite cities, allowing users to view, search, and remove cities from the list.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: For building the frontend user interface.
+- **Axios**: For making HTTP requests to the OpenWeatherMap API and the local JSON server.
+- **OpenWeatherMap API**: Used to fetch weather data for searched cities.
+- **JSON Server**: For handling favorite cities storage locally.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Follow these steps to set up and run the project locally:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ensure you have the following installed:
 
-### `npm run eject`
+- Node.js (v14 or above)
+- npm (Node package manager)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installing Dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone this repository to your local machine:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   git clone https://github.com/krkunal990/Weather_Dashboard.git
+   cd Weather_Dashboard
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Install the required npm packages:
 
-## Learn More
+   ```bash
+   npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Running the JSON Server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The project uses JSON Server to store and manage favorite cities.
 
-### Code Splitting
+1. Install JSON Server globally (if not already installed):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm install -g json-server
+   ```
 
-### Analyzing the Bundle Size
+2. Create a `db.json` file in the root of your project with the following structure:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```json
+   {
+     "favorites": []
+   }
+   ```
 
-### Making a Progressive Web App
+3. Start the JSON server by running:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```bash
+   json-server --watch db.json --port 5000
+   ```
 
-### Advanced Configuration
+### Running the React Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. In a separate terminal, start the React development server:
 
-### Deployment
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. The app will be available at [http://localhost:3000](http://localhost:3000).
 
-### `npm run build` fails to minify
+### Key Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Search Weather**: Use the search bar to look up the current weather and 5-day forecast for any city.
+- **Temperature Unit Toggle**: Switch between Celsius and Fahrenheit by clicking the toggle button in the weather display.
+- **Manage Favorites**: Add or remove cities from your list of favorites and view their weather.
+
+
+## Additional Notes
+
+- The weather data is refreshed when the user switches between Celsius and Fahrenheit.
+- Make sure your JSON server is running to store and retrieve favorite cities.
